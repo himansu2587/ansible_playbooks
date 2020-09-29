@@ -1,0 +1,31 @@
+replace – This module will replace all instances of a pattern within a file.
+lineinfile – Same as replace but this is primarily useful when you want to change a single line in a file only.
+
+
+Ex_1: find and replace all instances of foo with bar within a file named /etc/app.conf by creating or updating your yml file:
+
+- replace:
+    path: /etc/app.conf
+    regexp: 'foo'
+    replace: 'bar'
+    backup: yes
+    
+Ex_2: to replace hostname server1.cyberciti.biz with server1.nixcraft.com in /etc/hosts:
+
+- replace:
+    path: /etc/hosts
+    regexp: '(\s+)server1\.cyberciti\.biz(\s+.*)?$'
+    replace: '\1server1.nixcraft.com\2'
+    backup: yes
+    
+Ex_3: replace an IP address 202.51.1.1 with 203.55.5.5 in sshd_config and reload sshd service:
+
+- replace:
+   regexp: 202.51.1.1
+   replace: 203.55.5.5
+   backup: yes
+   validate: '/usr/sbin/sshd -t'
+   
+ - service:
+    name: sshd
+    state: reloaded
