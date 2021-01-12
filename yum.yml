@@ -1,0 +1,32 @@
+- hosts: all
+  tasks:
+  - name: Install a yum package in Ansible example
+    yum:
+      name: git
+      state: present
+
+- hosts: all
+  tasks:
+  - name: Install latest yum package example.
+    yum:
+      name: git
+      state: latest
+
+- hosts: all
+  tasks:
+  - name: yum
+    yum:
+      name: "{{ item }}"
+      state: present
+    with_items:
+    - git
+    - httpd
+    - mysql
+
+
+- hosts: all
+  tasks:
+  - name: Upgrade all yum packages ansible.
+    yum:
+      name: "*"
+      state: latest
