@@ -1,0 +1,15 @@
+- hosts: blocks
+  tasks:
+  - name: Ansible copy directory to the remote server
+    copy:
+      src:/Users/mdtutorials2/Documents/Ansible/copy_dir_ex
+      dest:/Users/mdtutorials2/Documents/Ansible/tmp
+      
+      
+- hosts: blocks
+  tasks:
+  - name: Ansible copy files from a directory to remote server
+    copy:
+      src:/Users/mdtutorials2/Documents/Ansible/copy_dir_ex/
+      dest:/Users/mdtutorials2/Documents/Ansible/tmp
+ 
